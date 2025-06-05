@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FARMAцевт - Вход</title>
+    <style>
+      @import url(https://fonts.googleapis.com/css2?family=Lato&display=swap);
+      @import url(https://fonts.googleapis.com/css2?family=Open+Sans&display=swap);
+      @import url(https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200);
+
+      body {
+        font-family: 'Open Sans', sans-serif;
+        background-color: #f8f9fa;
+        color: #5a5a5a;
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* Header */
+      .header {
+        background-color: #ffffff;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        padding: 20px 0;
+      }
+
+      .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo-container {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .logo-text {
+        font-family: 'Lato', sans-serif;
+        font-size: 28px;
+        font-weight: bold;
+        color: #282828;
+      }
+
+      .logo-text span {
+        color: #611bf8;
+      }
+
+      .logo-icon {
+        font-size: 36px;
+        color: #611bf8;
+      }
+
+      /* Auth Section */
+      .auth-section {
+        max-width: 500px;
+        margin: 60px auto;
+        padding: 40px;
+        background-color: white;
+        border-radius: 16px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      }
+
+      .auth-title {
+        font-family: 'Lato', sans-serif;
+        font-size: 32px;
+        font-weight: 700;
+        color: #282828;
+        margin-bottom: 30px;
+        text-align: center;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: #545454;
+      }
+
+      .form-group input {
+        width: 93%;
+        padding: 12px 16px;
+        border: 1px solid #e0e0e0;
+        border-radius: 12px;
+        font-size: 16px;
+        background-color: #f8f9fa;
+        transition: all 0.3s;
+      }
+
+      .form-group input:focus {
+        border-color: #611bf8;
+        outline: none;
+        background-color: white;
+        box-shadow: 0 0 0 3px rgba(97, 27, 248, 0.1);
+      }
+
+      .auth-btn1 {
+        background-color: #611bf8;
+        color: white;
+       border:none;
+       
+        padding: 14px;
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 16px;
+        cursor: pointer;
+        transition: all 0.3s;
+        width: 100%;
+      }
+      .auth-btn {
+        background-color: #611bf8;
+        color: white;
+       border:none;
+       
+        padding: 14px;
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 16px;
+        cursor: pointer;
+        transition: all 0.3s;
+        width: 8%;
+      }
+
+      .auth-btn:hover {
+        background-color: #4607d0;
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(97, 27, 248, 0.2);
+      }
+
+      .auth-links {
+        text-align: center;
+        margin-top: 20px;
+        color: #7f7f7f;
+      }
+
+      .auth-link {
+        color: #611bf8;
+        text-decoration: none;
+        font-weight: 600;
+        transition: color 0.3s;
+      }
+
+      .auth-link:hover {
+        color: #4607d0;
+        text-decoration: underline;
+      }
+      
+      /* Модальное окно для неподтвержденного email */
+      .verify-modal {
+        display: none;
+        position: fixed;
+        z-index: 100;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.5);
+      }
+      
+      .verify-modal-content {
+        background-color: white;
+        margin: 15% auto;
+        padding: 30px;
+        border-radius: 16px;
+        max-width: 500px;
+        text-align: center;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      }
+      
+      .verify-modal-title {
+        font-size: 24px;
+        margin-bottom: 20px;
+        color: #282828;
+      }
+      
+      .verify-modal-text {
+        margin-bottom: 25px;
+        line-height: 1.5;
+      }
+      
+      .verify-modal-btn {
+        background-color: #611bf8;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 12px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+      
+      .verify-modal-btn:hover {
+        background-color: #4607d0;
+      }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-container">
+                <div class="logo-container">
+                    <span class="material-symbols-outlined logo-icon">local_pharmacy</span>
+                    <div class="logo-text">FARMA<span>цевт</span></div>
+                </div>
+                <a href="index.html" class="auth-btn">На главную</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Auth Section -->
+    <div class="container">
+        <div class="auth-section">
+            <h2 class="auth-title">Вход в аккаунт</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">Электронная почта</label>
+                    <input type="email" id="email" name="email" required placeholder="Введите ваш email">
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Пароль</label>
+                    <input type="password" id="password" name="password" required placeholder="Введите ваш пароль">
+                </div>
+                
+                <button type="submit" class="auth-btn1">Войти</button>
+                
+                <div class="auth-links">
+                    <p>Нет аккаунта? <a href="registrationpage.html" class="auth-link">Зарегистрируйтесь</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Модальное окно для неподтвержденного email -->
+    <div id="verifyModal" class="verify-modal">
+        <div class="verify-modal-content">
+            <h3 class="verify-modal-title">Подтвердите ваш email</h3>
+            <p class="verify-modal-text">Для входа в систему необходимо подтвердить ваш email. Мы отправили письмо с подтверждением на <span id="userEmail"></span>. Пожалуйста, проверьте вашу почту и перейдите по ссылке в письме.</p>
+            <p class="verify-modal-text">Если письмо не пришло, проверьте папку "Спам" или запросите повторную отправку.</p>
+            <button id="resendBtn" class="verify-modal-btn">Отправить письмо повторно</button>
+            <button id="logoutBtn" class="verify-modal-btn" style="margin-left: 15px; background-color: #f1f1f1; color: #333;">Выйти</button>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
+    <script>
+      // Конфигурация Firebase (одинаковая для обеих страниц)
+      const firebaseConfig = {
+        apiKey: "AIzaSyBAUD4uAKQkAjbYvOp3fxZHbrfz546L4ak",
+        authDomain: "farma-4c55a.firebaseapp.com",
+        projectId: "farma-4c55a",
+        storageBucket: "farma-4c55a.firebasestorage.app",
+        messagingSenderId: "495155999987",
+        appId: "1:495155999987:web:710ff23e53fd39f963b386",
+        measurementId: "G-7BQRC4B0N3"
+      };
+      
+      // Инициализация Firebase
+      firebase.initializeApp(firebaseConfig);
+    </script>
+    <script>
+       document.addEventListener('DOMContentLoaded', function() {
+            const loginForm = document.getElementById('loginForm');
+            const verifyModal = document.getElementById('verifyModal');
+            const userEmailSpan = document.getElementById('userEmail');
+            const resendBtn = document.getElementById('resendBtn');
+            const logoutBtn = document.getElementById('logoutBtn');
+            
+            loginForm.addEventListener('submit', async function(e) {
+              e.preventDefault();
+              
+              const email = document.getElementById('email').value;
+              const password = document.getElementById('password').value;
+              
+              try {
+                // Вход через Firebase
+                const userCredential = await firebase.auth().signInWithEmailAndPassword(email, password);
+                const user = userCredential.user;
+                
+                // Проверяем, подтвержден ли email
+                if (!user.emailVerified) {
+                  // Показываем модальное окно с просьбой подтвердить email
+                  userEmailSpan.textContent = user.email;
+                  verifyModal.style.display = 'block';
+                  
+                  // Отправляем письмо с подтверждением
+                  await user.sendEmailVerification();
+                  
+                  // Запускаем проверку подтверждения email
+                  checkEmailVerification(user);
+                  return;
+                }
+                
+                // Проверка, заполнил ли пользователь анкету
+                const userDoc = await firebase.firestore()
+                  .collection('users')
+                  .doc(user.uid)
+                  .get();
+                
+                if (userDoc.exists) {
+                  window.location.href = 'page3.html'; // Переход к анкете
+                } else {
+                  window.location.href = 'profile-setup.html'; // Если нужно доп. данные
+                }
+                
+              } catch (error) {
+                console.error('Ошибка входа:', error);
+                alert(`Ошибка входа: ${error.message}`);
+              }
+            });
+            
+            // Функция проверки подтверждения email
+            function checkEmailVerification(user) {
+              const interval = setInterval(async () => {
+                try {
+                  // Обновляем данные пользователя
+                  await user.reload();
+                  
+                  // Если email подтверждён
+                  if (user.emailVerified) {
+                    clearInterval(interval);
+                    verifyModal.style.display = 'none';
+                    
+                    // Обновляем статус в Firestore
+                    await firebase.firestore().collection('users').doc(user.uid).update({
+                      emailVerified: true,
+                      verifiedAt: firebase.firestore.FieldValue.serverTimestamp()
+                    });
+                    
+                    // Перенаправляем на страницу 3
+                    window.location.href = 'page3.html';
+                  }
+                } catch (error) {
+                  console.error('Ошибка при проверке подтверждения:', error);
+                  clearInterval(interval);
+                }
+              }, 3000); // Проверяем каждые 3 секунды
+            }
+            
+            // Обработчик для кнопки повторной отправки письма
+            resendBtn.addEventListener('click', async function() {
+              try {
+                const user = firebase.auth().currentUser;
+                if (user) {
+                  await user.sendEmailVerification();
+                  alert('Письмо с подтверждением отправлено повторно!');
+                }
+              } catch (error) {
+                console.error('Ошибка при повторной отправке:', error);
+                alert(`Ошибка: ${error.message}`);
+              }
+            });
+            
+            // Обработчик для кнопки выхода
+            logoutBtn.addEventListener('click', async function() {
+              try {
+                await firebase.auth().signOut();
+                verifyModal.style.display = 'none';
+              } catch (error) {
+                console.error('Ошибка при выходе:', error);
+              }
+            });
+            
+            // Проверяем состояние аутентификации при загрузке страницы
+            firebase.auth().onAuthStateChanged(function(user) {
+              if (user) {
+                // Если пользователь уже вошел, но email не подтвержден
+                if (!user.emailVerified) {
+                  userEmailSpan.textContent = user.email;
+                  verifyModal.style.display = 'block';
+                  document.querySelector('.auth-section').style.display = 'none';
+                  
+                  // Запускаем проверку подтверждения email
+                  checkEmailVerification(user);
+                }
+              }
+            });
+          });
+    </script>
+</body>
+</html>

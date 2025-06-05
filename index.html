@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FARMAцевт - Главная</title>
+    <style>
+      @import url(https://fonts.googleapis.com/css2?family=Lato&display=swap);
+      @import url(https://fonts.googleapis.com/css2?family=Open+Sans&display=swap);
+      @import url(https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200);
+      @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css);
+
+      body {
+        font-family: 'Open Sans', sans-serif;
+        background-color: #f8f9fa;
+        color: #5a5a5a;
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* Header */
+      .header {
+        background-color: #ffffff;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        padding: 20px 0;
+      }
+
+      .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo-container {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .logo-text {
+        font-family: 'Lato', sans-serif;
+        font-size: 28px;
+        font-weight: bold;
+        color: #282828;
+      }
+
+      .logo-text span {
+        color: #611bf8;
+      }
+
+      .logo-icon {
+        font-size: 36px;
+        color: #611bf8;
+      }
+
+      .auth-btn {
+        background-color: #611bf8;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 12px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        text-decoration: none;
+      }
+
+      .auth-btn:hover {
+        background-color: #4607d0;
+        transform: translateY(-2px);
+      }
+
+      /* Hero Section */
+      .hero {
+        background: linear-gradient(135deg, #f3f1ff 0%, #e9e5ff 100%);
+        padding: 80px 0;
+        text-align: center;
+        border-radius: 0 0 24px 24px;
+        margin-bottom: 60px;
+      }
+
+      .hero h1 {
+        font-family: 'Lato', sans-serif;
+        font-size: 48px;
+        font-weight: 700;
+        color: #282828;
+        margin-bottom: 20px;
+      }
+
+      .hero h1 span {
+        color: #611bf8;
+      }
+
+      .hero p {
+        font-size: 18px;
+        color: #545454;
+        max-width: 700px;
+        margin: 0 auto 40px;
+        line-height: 1.6;
+      }
+
+      .cta-btn {
+        background-color: #611bf8;
+        color: white;
+        border: none;
+        padding: 15px 30px;
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 18px;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      .cta-btn:hover {
+        background-color: #4607d0;
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(97, 27, 248, 0.2);
+      }
+
+      /* Features Section */
+      /* Expanded Feature Cards */
+.feature-card.expanded {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) !important; /* !important чтобы переопределить hover-эффекты */
+    width: 80%;
+    max-width: 800px;
+    max-height: 80vh;
+    z-index: 1000;
+    overflow-y: auto;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2) !important;
+    cursor: default;
+    /* Отключаем все hover-эффекты для развернутого состояния */
+    transform: translate(-50%, -50%) !important;
+    transition: none !important;
+}
+
+.feature-card.expanded:hover {
+    transform: translate(-50%, -50%) !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2) !important;
+}
+
+.close-expanded {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1001; /* Чтобы был поверх содержимого карточки */
+    color: #611bf8;
+    background: white;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.close-expanded:hover {
+    background: #f3f1ff;
+}
+.feature-card.expanded .feature-desc {
+    display: none;
+}
+
+.feature-card.expanded .expanded-content {
+    display: block;
+}
+
+.expanded-content {
+    display: none;
+    margin-top: 20px;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    z-index: 999;
+}
+      .features {
+        margin-bottom: 80px;
+      }
+
+      .section-title {
+        text-align: center;
+        font-family: 'Lato', sans-serif;
+        font-size: 36px;
+        font-weight: 700;
+        color: #282828;
+        margin-bottom: 50px;
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+      }
+
+      .feature-card {
+        background-color: white;
+        border-radius: 16px;
+        padding: 30px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        transition: all 0.3s;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+      }
+
+      .feature-icon {
+        font-size: 40px;
+        color: #611bf8;
+        margin-bottom: 20px;
+      }
+
+      .feature-title {
+        font-family: 'Lato', sans-serif;
+        font-size: 22px;
+        font-weight: 600;
+        color: #282828;
+        margin-bottom: 15px;
+      }
+
+      .feature-desc {
+        color: #545454;
+        line-height: 1.6;
+      }
+
+      /* Steps Section */
+      .steps {
+        background: linear-gradient(135deg, #f3f1ff 0%, #e9e5ff 100%);
+        padding: 80px 0;
+        border-radius: 24px;
+        margin-bottom: 80px;
+      }
+
+      .steps-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+        margin-top: 50px;
+      }
+
+      .step-card {
+        background-color: white;
+        border-radius: 16px;
+        padding: 30px;
+        text-align: center;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      }
+
+      .step-number {
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        background-color: #611bf8;
+        color: white;
+        border-radius: 50%;
+        font-weight: 700;
+        font-size: 22px;
+        line-height: 50px;
+        margin-bottom: 20px;
+      }
+
+      .step-title {
+        font-family: 'Lato', sans-serif;
+        font-size: 20px;
+        font-weight: 600;
+        color: #282828;
+        margin-bottom: 15px;
+      }
+
+      .step-desc {
+        color: #545454;
+        line-height: 1.6;
+      }
+
+      /* Footer */
+      .footer {
+        background-color: #282828;
+        color: white;
+        padding: 50px 0 20px;
+        text-align: center;
+      }
+
+      .footer-logo {
+        font-family: 'Lato', sans-serif;
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 20px;
+      }
+
+      .footer-logo span {
+        color: #611bf8;
+      }
+
+      .footer-links {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        margin-bottom: 30px;
+      }
+
+      .footer-link {
+        color: #b1b1b1;
+        text-decoration: none;
+        transition: color 0.3s;
+        cursor: pointer;
+      }
+
+      .footer-link:hover {
+        color: white;
+      }
+
+      .footer-copy {
+        color: #7f7f7f;
+        font-size: 14px;
+      }
+
+     .modal-content {
+    position: relative;
+    max-height: 80vh; /* Ограничиваем высоту модального окна */
+    overflow: hidden; /* Скрываем всё, что выходит за границы */
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-scrollable-content {
+    overflow-y: auto; /* Включаем вертикальную прокрутку */
+    max-height: calc(80vh - 60px); /* Учитываем место для заголовка и кнопки закрытия */
+    padding-right: 15px; /* Чтобы текст не заезжал под скроллбар */
+    padding-bottom: 20px; /* Добавляем отступ снизу */
+}
+
+/* Стили для скроллбара (опционально) */
+.modal-scrollable-content::-webkit-scrollbar {
+    width: 6px;
+}
+.modal-scrollable-content::-webkit-scrollbar-thumb {
+    background-color: rgba(0,0,0,0.2);
+    border-radius: 3px;
+}
+
+/* Общие стили для модальных окон */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 700px;
+}
+
+.close-btn {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+      .close-btn:hover {
+        color: #333;
+      }
+
+      .modal-title {
+        font-family: 'Lato', sans-serif;
+        font-size: 28px;
+        font-weight: 700;
+        color: #282828;
+        margin-bottom: 20px;
+      }
+
+      .modal-text {
+        color: #545454;
+        line-height: 1.6;
+        margin-bottom: 20px;
+      }
+
+      .modal-list {
+        margin-bottom: 20px;
+        padding-left: 20px;
+      }
+
+      .modal-list li {
+        margin-bottom: 10px;
+      }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-container">
+                <div class="logo-container">
+                    <span class="material-symbols-outlined logo-icon">local_pharmacy</span>
+                    <div class="logo-text">FARMA<span>цевт</span></div>
+                </div>
+                <a href="index2.html" class="auth-btn">Войти</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Индивидуальный подход к <span>спортивной фармакологии</span></h1>
+            <p>Достигайте максимальных результатов с точным расчетом курса фармакологии и персонализированными тренировками под ваш вес, возраст и тип нагрузок. Наш сервис анализирует ваши данные и создает оптимальную программу для безопасного и эффективного прогресса.</p>
+            <a href="index2.html" class="cta-btn">Начать сейчас</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Почему стоит выбрать FARMAцевт?</h2>
+            <div class="features-grid">
+    <div class="feature-card">
+        <span class="material-symbols-outlined feature-icon">psychology</span>
+        <h3 class="feature-title">Точный расчет</h3>
+        <p class="feature-desc">Алгоритмы на основе спортивной медицины и физиологии для оптимальных дозировок и программ тренировок.</p>
+        <div class="expanded-content">
+            <p>Наш сервис использует передовые алгоритмы, разработанные совместно с экспертами в области спортивной медицины, чтобы обеспечить максимально точные расчеты дозировок и программ тренировок.</p>
+            <ul>
+                <li>Учет индивидуальных физиологических параметров</li>
+                <li>Анализ предыдущего опыта применения фармакологии</li>
+                <li>Корректировка плана на основе динамики изменений</li>
+                <li>Прогнозирование результатов с точностью до 90%</li>
+            </ul>
+        </div>
+    </div>
+    <div class="feature-card">
+        <span class="material-symbols-outlined feature-icon">fitness_center</span>
+        <h3 class="feature-title">Персональные тренировки</h3>
+        <p class="feature-desc">Программа под ваш тип телосложения, уровень подготовки и спортивные цели.</p>
+        <div class="expanded-content">
+            <p>Мы создаем полностью индивидуальные программы тренировок, которые учитывают все аспекты вашей физиологии и целей.</p>
+            <ul>
+                <li>Анализ типа телосложения (эктоморф, мезоморф, эндоморф)</li>
+                <li>Подбор упражнений под ваши слабые и сильные группы мышц</li>
+                <li>Оптимальное распределение нагрузки в микроциклах</li>
+                <li>Рекомендации по технике выполнения упражнений</li>
+                <li>Периодизация тренировочного процесса</li>
+            </ul>
+        </div>
+    </div>
+    <div class="feature-card">
+        <span class="material-symbols-outlined feature-icon">health_and_safety</span>
+        <h3 class="feature-title">Безопасность</h3>
+        <p class="feature-desc">Исключение неоправданных рисков за счет адаптивных дозировок и контроля состояния.</p>
+        <div class="expanded-content">
+            <p>Безопасность - наш главный приоритет. Мы разработали систему контроля, которая минимизирует риски побочных эффектов.</p>
+            <ul>
+                <li>Мониторинг ключевых показателей здоровья</li>
+                <li>Автоматические предупреждения о потенциальных рисках</li>
+                <li>Рекомендации по поддерживающей терапии</li>
+                <li>План экстренных мер при непредвиденных реакциях</li>
+                <li>Регулярные проверки анализов (при подключении опции)</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="overlay"></div>
+        </div>
+    </section>
+
+    <!-- Steps Section -->
+    <section class="steps">
+        <div class="container">
+            <h2 class="section-title">Рассчитайте свой курс за 3 шага</h2>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Укажите параметры</h3>
+                    <p class="step-desc">Вес, возраст, вид спорта и уровень подготовки для точного расчета.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Получите план</h3>
+                    <p class="step-desc">Дозировки, длительность курса, тренировки и рекомендации по питанию.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Достигайте результатов</h3>
+                    <p class="step-desc">Следуйте программе и отслеживайте прогресс с нашей поддержкой.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-logo">FARMA<span>цевт</span></div>
+            <div class="footer-links">
+                <a id="aboutLink" class="footer-link">О сервисе</a>
+                <a id="contactsLink" class="footer-link">Контакты</a>
+                <a id="privacyLink" class="footer-link">Политика конфиденциальности</a>
+            </div>
+            <p class="footer-copy">© 2025 FARMAцевт. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <!-- Модальное окно "О сервисе" -->
+    <!-- Модальное окно "О сервисе" -->
+<div id="aboutModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <div class="modal-scrollable-content">
+            <h2 class="modal-title">О сервисе FARMAцевт</h2>
+            <p class="modal-text">FARMAцевт - это инновационный сервис для спортсменов и любителей фитнеса, который предоставляет персонализированные рекомендации по спортивной фармакологии и тренировкам.</p>
+            <p class="modal-text">Наша миссия - сделать спортивную фармакологию безопасной и эффективной за счет точных расчетов и индивидуального подхода.</p>
+            <h3 class="modal-title" style="font-size: 22px; margin-top: 30px;">Наши преимущества:</h3>
+            <ul class="modal-list">
+                <li>Научно обоснованные методики расчета</li>
+                <li>Индивидуальный подход к каждому пользователю</li>
+                <li>Контроль безопасности и минимизация побочных эффектов</li>
+                <li>Комплексные программы (фармакология + тренировки + питание)</li>
+                <li>Конфиденциальность и защита данных</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Модальное окно "Контакты" -->
+<div id="contactsModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <div class="modal-scrollable-content">
+            <h2 class="modal-title">Контакты</h2>
+            <p class="modal-text">Мы всегда рады ответить на ваши вопросы и помочь с использованием нашего сервиса.</p>
+            
+            <h3 class="modal-title" style="font-size: 22px; margin-top: 30px;">Способы связи:</h3>
+            <ul class="modal-list">
+                <li><strong>Электронная почта:</strong> vladnistor2007@gmail.com</li>
+                <li><strong>Телефон:</strong> +375 (29) 397-89-99</li>
+                <li><strong>Telegram:</strong> @farmacevt_support</li>
+                <li><strong>Часы работы:</strong> Пн-Пт с 9:00 до 18:00</li>
+            </ul>
+            
+            <h3 class="modal-title" style="font-size: 22px; margin-top: 30px;">Офис компании:</h3>
+            <p class="modal-text">г. Минск, ул. Петруся Бровки, д. 12, корпус 2</p>
+        </div>
+    </div>
+</div>
+
+<!-- Модальное окно "Политика конфиденциальности" -->
+<div id="privacyModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <div class="modal-scrollable-content">
+            <h2 class="modal-title">Политика конфиденциальности</h2>
+            <p class="modal-text">Последнее обновление: 6 мая 2025 года</p>
+            
+            <h3 class="modal-title" style="font-size: 22px; margin-top: 30px;">1. Общие положения</h3>
+            <p class="modal-text">Настоящая Политика конфиденциальности регулирует порядок обработки и использования персональных данных пользователей сервиса FARMAцевт.</p>
+            
+            <h3 class="modal-title" style="font-size: 22px; margin-top: 20px;">2. Какие данные мы собираем</h3>
+            <ul class="modal-list">
+                <li>Персональные данные (имя, возраст, пол)</li>
+                <li>Антропометрические данные (вес, рост)</li>
+                <li>Данные о спортивной активности и целях</li>
+                <li>Технические данные (IP-адрес, тип устройства)</li>
+            </ul>
+            
+            <h3 class="modal-title" style="font-size: 22px; margin-top: 30px;">3. Как мы используем данные</h3>
+            <p class="modal-text">Мы используем ваши данные исключительно для:</p>
+            <ul class="modal-list">
+                <li>Формирования персонализированных рекомендаций</li>
+                <li>Улучшения качества сервиса</li>
+                <li>Обеспечения безопасности</li>
+                <li>Технической поддержки</li>
+            </ul>
+            
+            <h3 class="modal-title" style="font-size: 22px; margin-top: 20px;">4. Защита данных</h3>
+            <p class="modal-text">Мы применяем современные методы шифрования и защиты данных, соответствующие стандартам GDPR.</p>
+        </div>
+    </div>
+</div>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        content: ["./src/**/*.{html,js}"],
+        theme: {"name":"Bluewave","fontFamily":{"sans":["Open Sans","ui-sans-serif","system-ui","sans-serif","\"Apple Color Emoji\"","\"Segoe UI Emoji\"","\"Segoe UI Symbol\"","\"Noto Color Emoji\""]},"extend":{"fontFamily":{"title":["Lato","ui-sans-serif","system-ui","sans-serif","\"Apple Color Emoji\"","\"Segoe UI Emoji\"","\"Segoe UI Symbol\"","\"Noto Color Emoji\""],"body":["Open Sans","ui-sans-serif","system-ui","sans-serif","\"Apple Color Emoji\"","\"Segoe UI Emoji\"","\"Segoe UI Symbol\"","\"Noto Color Emoji\""]},"colors":{"neutral":{"50":"#f7f7f7","100":"#eeeeee","200":"#e0e0e0","300":"#cacaca","400":"#b1b1b1","500":"#999999","600":"#7f7f7f","700":"#676767","800":"#545454","900":"#464646","950":"#282828"},"primary":{"50":"#f3f1ff","100":"#e9e5ff","200":"#d5cfff","300":"#b7a9ff","400":"#9478ff","500":"#7341ff","600":"#631bff","700":"#611bf8","800":"#4607d0","900":"#3c08aa","950":"#220174","DEFAULT":"#611bf8"}}},"fontSize":{"xs":["12px",{"lineHeight":"19.200000000000003px"}],"sm":["14px",{"lineHeight":"21px"}],"base":["16px",{"lineHeight":"25.6px"}],"lg":["18px",{"lineHeight":"27px"}],"xl":["20px",{"lineHeight":"28px"}],"2xl":["24px",{"lineHeight":"31.200000000000003px"}],"3xl":["30px",{"lineHeight":"36px"}],"4xl":["36px",{"lineHeight":"41.4px"}],"5xl":["48px",{"lineHeight":"52.800000000000004px"}],"6xl":["60px",{"lineHeight":"66px"}],"7xl":["72px",{"lineHeight":"75.60000000000001px"}],"8xl":["96px",{"lineHeight":"100.80000000000001px"}],"9xl":["128px",{"lineHeight":"134.4px"}]},"borderRadius":{"none":"0px","sm":"6px","DEFAULT":"12px","md":"18px","lg":"24px","xl":"36px","2xl":"48px","3xl":"72px","full":"9999px"},"spacing":{"0":"0px","1":"4px","2":"8px","3":"12px","4":"16px","5":"20px","6":"24px","7":"28px","8":"32px","9":"36px","10":"40px","11":"44px","12":"48px","14":"56px","16":"64px","20":"80px","24":"96px","28":"112px","32":"128px","36":"144px","40":"160px","44":"176px","48":"192px","52":"208px","56":"224px","60":"240px","64":"256px","72":"288px","80":"320px","96":"384px","px":"1px","0.5":"2px","1.5":"6px","2.5":"10px","3.5":"14px"}},
+        plugins: [],
+      };
+
+      // Обработчики модальных окон
+      document.addEventListener('DOMContentLoaded', function() {
+        // Получаем элементы
+        const aboutLink = document.getElementById('aboutLink');
+        const contactsLink = document.getElementById('contactsLink');
+        const privacyLink = document.getElementById('privacyLink');
+        
+        const aboutModal = document.getElementById('aboutModal');
+        const contactsModal = document.getElementById('contactsModal');
+        const privacyModal = document.getElementById('privacyModal');
+        
+        const closeBtns = document.querySelectorAll('.close-btn');
+
+        // Открытие модальных окон
+        aboutLink.addEventListener('click', () => aboutModal.style.display = 'block');
+        contactsLink.addEventListener('click', () => contactsModal.style.display = 'block');
+        privacyLink.addEventListener('click', () => privacyModal.style.display = 'block');
+
+        // Закрытие модальных окон
+        closeBtns.forEach(btn => {
+          btn.addEventListener('click', function() {
+            this.closest('.modal').style.display = 'none';
+          });
+        });
+
+        // Закрытие при клике вне окна
+        window.addEventListener('click', function(event) {
+          if (event.target.classList.contains('modal')) {
+            event.target.style.display = 'none';
+          }
+        });
+
+        // Проверка авторизации
+        const authBtn = document.querySelector('.auth-btn');
+        const ctaBtn = document.querySelector('.cta-btn');
+        
+        // Здесь должна быть логика проверки авторизации через Firebase
+        // Для примера используем localStorage
+        if (localStorage.getItem('isAuthenticated')) {
+          authBtn.textContent = 'Личный кабинет';
+          authBtn.href = 'page3.html';
+          ctaBtn.textContent = 'Перейти в кабинет';
+          ctaBtn.href = 'page3.html';
+        }
+      });
+      const featureCards = document.querySelectorAll('.feature-card');
+const overlay = document.querySelector('.overlay');
+
+featureCards.forEach(card => {
+    card.addEventListener('click', function(e) {
+        // Если клик был по уже расширенной карточке или по кнопке закрытия - не обрабатываем
+        if (this.classList.contains('expanded') || e.target.classList.contains('close-expanded')) {
+            return;
+        }
+        
+        // Закрываем все другие открытые карточки
+        document.querySelectorAll('.feature-card.expanded').forEach(openCard => {
+            openCard.classList.remove('expanded');
+        });
+        
+        // Открываем текущую карточку
+        this.classList.add('expanded');
+        overlay.style.display = 'block';
+        
+        // Добавляем кнопку закрытия
+        const closeBtn = document.createElement('span');
+        closeBtn.className = 'close-expanded material-symbols-outlined';
+        closeBtn.textContent = 'close';
+        closeBtn.style.position = 'absolute';
+        closeBtn.style.top = '15px';
+        closeBtn.style.right = '15px';
+        closeBtn.style.fontSize = '24px';
+        closeBtn.style.cursor = 'pointer';
+        this.appendChild(closeBtn);
+        
+        // Обработчик для кнопки закрытия
+        closeBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            card.classList.remove('expanded');
+            overlay.style.display = 'none';
+            this.remove();
+        });
+    });
+});
+
+// Закрытие при клике на overlay
+overlay.addEventListener('click', function() {
+    document.querySelectorAll('.feature-card.expanded').forEach(card => {
+        card.classList.remove('expanded');
+        const closeBtn = card.querySelector('.close-expanded');
+        if (closeBtn) closeBtn.remove();
+    });
+    this.style.display = 'none';
+});
+    </script>
+</body>
+</html>
